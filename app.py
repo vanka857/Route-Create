@@ -12,7 +12,7 @@ def hello_world():
 class Button:
     __id = 0
 
-    def __init__(self, text: str, action_code: str, html_content=''):
+    def __init__(self, text: str, action_code='', html_content=''):
         self.name = text
         self.text = text
         self.action_code = action_code
@@ -25,8 +25,8 @@ class Button:
         exec(self.action_code)
 
 
-CaptureButton = Button("Capture", "capturePic()")
-DeleteButton = Button("Delete", "deletePic()")
+CaptureButton = Button("Capture")
+DeleteButton = Button("Delete")
 # SaveButton = Button("Save", "savePic()")
 with app.app_context():
     set_name = get_template_attribute("buttonDownloadLink.html", "set_name")
@@ -100,14 +100,6 @@ def load_default_photo():
     print('loading_photo')
     result = jsonify({'src': '/static/placeholder1.png'})
     return result
-
-
-def get_photo_src():
-    print(request.form)
-    return send_from_directory(
-        os.path.join(app.root_path, 'static'),
-        '1_blue.png'
-    )
 
 
 if __name__ == '__main__':
