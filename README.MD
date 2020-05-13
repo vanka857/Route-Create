@@ -17,7 +17,12 @@
 
 ## Запуск сервера
 1. Необходимые модули: os, **flask**
-2. Запуск из корневой папки `$ python3 app.py`
+2. Размер проекта ~39MiB, это нормально
+    ```shell script
+    git clone https://github.com/vanka857/Route-Create.git -b release-0.1
+    cd Route-Create
+    python3 app.py
+    ```
 3. Сайт будет доступен по адресу http://127.0.0.1:5000/
 
 
