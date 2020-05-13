@@ -1,13 +1,13 @@
-#Route and Create
+# Route and Create
 *Веб-приложение, позволяющее делать фото по всему миру _через интернет_*
 
-###Travel all over the world
+### Travel all over the world
 ![](.github/pictures/RouteAndCreate1.png)
-###Create picture and edit it
+### Create picture and edit it
 ![](.github/pictures/RouteAndCreate2.png)
 
 
-##Как ипользовать
+## Как ипользовать
 * Перемещайтесь по миру используя интерактивные Street View и Maps (они синхронизированы)
     * Используйте pegman'a (человечка) для перемещения с помощью Maps! 
 * Делайте фото по нажатию `Capture`
@@ -16,7 +16,7 @@
 * Удаляйте фото по нажатию `Delete`
 
 
-##Техническая сторона
+## Техническая сторона
 написано на **Python** + **flask**
 
 использованное API:
