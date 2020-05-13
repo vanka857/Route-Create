@@ -1,5 +1,4 @@
 from flask import Flask, send_from_directory, render_template, redirect, request, jsonify, get_template_attribute
-import json
 import os
 
 app = Flask(__name__)
@@ -113,4 +112,4 @@ def get_photo_src():
 
 if __name__ == '__main__':
     createLUTs()
-    app.run(debug=True)
+    app.run(debug=False)
