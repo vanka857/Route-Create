@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Route & Create</title>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500&family=Montserrat&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style/main.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='style/content.css') }}" type="text/css" rel="stylesheet">
+
+</head>
+
+{% include 'header.html' %}
+
+<body>
+
+  <div id="content" style="display: grid">
+    <table id="content-table" style="width: 100%; height: 100%; table-layout: inherit" >
+{#      <td style="width: 13%">#}
+{#         Для дальнейшего использования#}
+{#        <div id="images">#}
+{#          <table id="images-table">#}
+{#            <tr>#}
+{#              <p>#}
+{#                image1#}
+{#              </p>#}
+{#            </tr>#}
+{#            <tr>#}
+{#              <p>#}
+{#                image2#}
+{#              </p>#}
+{#            </tr>#}
+{##}
+{#          </table>#}
+{#        </div>#}
+{#      </td>#}
+
+      <td style="display: grid; grid-gap: 3vh">
+        <div id="map_page" >
+          <div class="maps" id="pano" ></div>
+          <div class="maps" id="map"></div>
+
+          <script
+            src = "{{ url_for('static', filename='js/GoogleMaps.js') }}" >
+          </script>
+          <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBIPkoosmsx89Rh20-Xl4krj1Ax6YLQzvA&callback=initialize" >
+          </script>
+
+          <input type="hidden" id="position-cell" value=""> </input>
+          <input type="hidden" id="heading-cell" value=""> </input>
+          <input type="hidden" id="pitch-cell" value=""> </input>
+          <input type="hidden" id="pano-cell" value=""> </input>
+          <input type="hidden" id="zoom-cell" value=""> </input>
+        </div>
+
+        <script src=" {{ url_for('static', filename='js/PhotoProcessor.js') }}"></script>
+
+        <div id="buttons">
+          {% for button in button_list %}
+            <form title="{{ button.name }}" action="#">
+
+              <button class="action_button" onclick=" {{button.action_code}}" type="button">
+                <script>
+                  {{button.load_code}}
+                </script>
+
+                {{ button.text }}
+                {{ button.content }}
+              </button>
+
+            </form>
+          {% endfor %}
+        </div>
+
+
+        <div id="editor">
+          <div id="photo_div" >
+            <img crossorigin="anonymous" id="photo_image" alt="here will be image" src="">
+
+            <script>
+              setDefaultPicture();
+            </script>
+
+            <input id="is_image_active" type="hidden" value="false">
+            <canvas id="image_canvas" style="display: none" > </canvas>
+
+            <div id="editor_action_div"></div>
+          </div>
+
+          <div id="LUTs">
+            {% for lut in lut_list %}
+              <button class="LUT_button" onclick="editByLUT({{ loop.index0 }}{{ ", '" }}{{ lut.lut_filename }}{{ "'" }})">
+
+                <div style="position: relative; width: 100%; height: 100%">
+                  <img style="width: 100%; height: 100%" src="{{ url_for('get_lut_image', filename=lut.image_filename ) }}" alt="LUN id: {{ lut.id }}">
+                  <div class="LUT_title">
+                    <div style=" width: 100%; position: absolute; top: 50%; transform: translate(0, -50%)">
+                      <h2 style="text-align: center; width: 100%">{{ lut.name }}</h2>
+                    </div>
+                  </div>
+                </div>
+
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <input type="hidden" id="image_scaling_depends_pano" value="1.5"> </input>
+
+        <script>
+          function setSize() {
+            const pano = document.getElementById('pano');
+            const scale = document.getElementById('image_scaling_depends_pano').getAttribute('value');
+            let width = pano.offsetWidth * scale;
+
+            document.getElementById('photo_image').style.setProperty("width", width.toString() + 'px');
+
+            const fact_height = document.getElementById('photo_image').offsetHeight;
+            //console.log(fact_height);
+            document.getElementById('editor_action_div').style.setProperty("height", fact_height.toString() + 'px');
+          }
+          $(window).on('load', setSize);
+          $(window).on('resize', setSize);
+          setSize();
+        </script>
+
+      </td>
+    </table>
+  </div>
+</body>
+
+{% include 'footer.html' %}
+
+</html>
