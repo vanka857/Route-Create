@@ -25,8 +25,8 @@ class Button:
         exec(self.action_code)
 
 
-CaptureButton = Button("Capture")
-DeleteButton = Button("Delete")
+CaptureButton = Button("Capture", "capturePic()")
+DeleteButton = Button("Delete", "deletePic()")
 # SaveButton = Button("Save", "savePic()")
 with app.app_context():
     set_name = get_template_attribute("buttonDownloadLink.html", "set_name")
