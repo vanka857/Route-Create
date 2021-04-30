@@ -21,7 +21,7 @@
 1. Необходимые модули: os, **flask**
 2. Размер проекта при скачивании ~39MiB, на диске: ~119MiB - это нормально (Такой большой размер связан с пресетами) 
     ```shell script
-    git clone https://github.com/vanka857/Route-Create.git -b release-0.1
+    git clone https://github.com/vanka857/Route-Create.git
     cd Route-Create
     python3 app.py
     ```
